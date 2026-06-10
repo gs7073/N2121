@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.N2121">
         <activity
+            android:name=".EditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
