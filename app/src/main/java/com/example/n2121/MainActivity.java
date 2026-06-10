@@ -116,4 +116,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Creates the options menu in the top bar.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    /**
+     * Handles clicks on the menu items.
+     */
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_search) {
+            android.content.Intent intent = new android.content.Intent(this, SearchActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_credits) {
+            android.content.Intent intent = new android.content.Intent(this, CreditsActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_logout) {
+            // Disconnect from Firebase
+            FBRef.refAuth.signOut();
+
+            // Clear "Stay Connected" preference
+            android.content.SharedPreferences settings = getSharedPreferences("PREFS", MODE_PRIVATE);
+            android.content.SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("stayConnect", false);
+            editor.apply();
+
+            // Return to Login Screen
+            android.content.Intent intent = new android.content.Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
