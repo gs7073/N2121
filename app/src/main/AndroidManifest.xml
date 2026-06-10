@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.N2121">
         <activity
+            android:name=".CreditsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
